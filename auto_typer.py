@@ -1,17 +1,27 @@
 from tkinter import *
 import pyautogui as pau
+from pynput.keyboard import Controller
 from typing import *
+from builtins import str
+import time
+
+keyboard = Controller()
 
 app = Tk()
 
 app.geometry('860x720+700+180')
-app.title('Auto Typer 1.0')
+app.title('Auto Typer 2.0')
 app.resizable(0,0)
 
 def autoTyping():
     pau.moveTo(350,500)
     pau.click()
-    pau.typewrite(f'{msg.get()}', interval = interval1.get()/1000)
+    s = str(msg.get())
+    print(f'{s}')
+    al = list(s)
+    for i in al:
+        keyboard.type(i)
+        time.sleep(interval1.get()/1000)
 
 def quit_app():
     app.destroy()
